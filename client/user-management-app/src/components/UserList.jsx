@@ -1,8 +1,7 @@
-// components/UserList.js
 import React, { useEffect, useState } from 'react';
 import UserCard from './UserCard';
 
-const UserList = ({ searchResults, filteredUsers, onAddToTeam }) => {
+const UserList = ({ searchResults, filteredUsers, onToggleSelect }) => {
     const [userList, setUserList] = useState([]);
 
     useEffect(() => {
@@ -20,7 +19,6 @@ const UserList = ({ searchResults, filteredUsers, onAddToTeam }) => {
                 const data = await response.json();
                 setUserList(data);
             }
-
         } catch (error) {
             console.error('Error fetching data:', error);
         }
@@ -29,7 +27,11 @@ const UserList = ({ searchResults, filteredUsers, onAddToTeam }) => {
     return (
         <div className="user-list">
             {userList.map((user) => (
-                <UserCard key={user._id} user={user} onAddToTeam={onAddToTeam} />
+                <UserCard
+                    key={user._id}
+                    user={user}
+                    onToggleSelect={onToggleSelect}
+                />
             ))}
         </div>
     );
