@@ -44,7 +44,6 @@ const Search = ({ onSearch }) => {
                         <Button variant="outline-light" onClick={(e) => handleSearch(e)}>Search</Button>
                     </Form>
                     <Nav className="ms-auto">
-                        <Nav.Link href="/wishlist">Wishlist</Nav.Link>
                         <Nav.Link href="/team-details">TeamDetails</Nav.Link>
 
                     </Nav>
