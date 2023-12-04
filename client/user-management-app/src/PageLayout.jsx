@@ -39,11 +39,7 @@ const PageLayout = () => {
         }
     };
 
-    const handleCreateTeam = (teamName, selectedUserIds) => {
-        // Add logic to send team creation request with teamName and selectedUserIds
-        console.log('Creating team:', teamName);
-        console.log('Selected User IDs:', selectedUserIds);
-    };
+
 
     useEffect(() => {
         handleFilterChange({});
@@ -55,7 +51,6 @@ const PageLayout = () => {
             <Filter onFilterChange={handleFilterChange} />
             <CreateTeam
                 selectedUserIds={selectedUserIds}
-                onCreateTeam={handleCreateTeam}
             />
             <UserList
                 searchResults={searchResults}

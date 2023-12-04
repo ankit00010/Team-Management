@@ -25,17 +25,27 @@ const createTeam = asyncHandler(async (req, res) => {
             return res.status(400).json({ message: 'All selected users must be marked as available.' });
         }
 
+        // Check if a team with the same name already exists
+        const existingTeam = await Team.findOne({ name });
+        if (existingTeam) {
+            return res.status(400).json({ message: 'A team with the same name already exists.' });
+        }
 
         // Create Team
         const team = new Team({ name, users: userIds });
         await team.save();
 
         // Response
-        res.status(201).json({ team });
+        res.status(201).json({ message: 'Team created successfully', team });
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        console.error('Error creating team:', error);
+
+        // Response with detailed error message (for development purposes)
+        res.status(500).json({ message: 'Internal Server Error', error: error.message });
     }
 });
+
+
 
 
 const getTeam = asyncHandler(async (req, res) => {

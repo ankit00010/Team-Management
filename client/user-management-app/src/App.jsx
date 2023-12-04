@@ -10,6 +10,7 @@ const App = () => {
     <Router>
       <Routes>
         <Route path="/" element={<PageLayout />} />
+
         <Route path="/team-details" element={<TeamListIndex />} />
         <Route path="/team-details/:name" element={<TeamDetails />} />
       </Routes>

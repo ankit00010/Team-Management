@@ -1,17 +1,22 @@
 import React, { useState } from 'react';
+import CreatedTeamPop from './CreatedTeamPop';
+import { useNavigate } from 'react-router-dom';
 
 const CreateTeam = ({ onCreateTeam, selectedUserIds }) => {
     const [teamName, setTeamName] = useState('');
+    const [showPopup, setShowPopup] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
 
     const handleCreateTeam = async () => {
         try {
-            // Create a team object with teamName and selectedUserIds
+            setLoading(true);
+
             const teamData = {
                 name: teamName,
                 userIds: selectedUserIds,
             };
-            console.log("This is the user id list" + selectedUserIds)
-            // Perform the POST request to create a team
+
             const response = await fetch('http://localhost:5000/api/team/', {
                 method: 'POST',
                 headers: {
@@ -25,26 +30,13 @@ const CreateTeam = ({ onCreateTeam, selectedUserIds }) => {
 
             // Check if the request was successful (status code 2xx)
             if (response.ok) {
-                // Parse the response data if needed
-                const data = await response.json();
-
-                // Call the onCreateTeam function with the created team data
-                onCreateTeam(data);
-
-                // Reset team name
                 setTeamName('');
-
-                // Notify the user about the successful creation
                 alert('Team created successfully!');
             } else {
-                // Handle error cases
                 console.error('Failed to create team:', response.statusText);
-
-                // Notify the user about the failure
                 alert('Failed to create team. Please try again.');
             }
 
-            // Update users as false based on their IDs
             const response2 = await fetch('http://localhost:5000/api/users', {
                 method: 'PUT',
                 headers: {
@@ -56,33 +48,27 @@ const CreateTeam = ({ onCreateTeam, selectedUserIds }) => {
                 }),
             });
 
-            // Log the entire response for debugging
-            console.log('Server Response (Update Users):', response2);
-
-            // Check if the request to update users was successful
-            if (response2.ok) {
-                // Parse the response data if needed
-                const updatedUserData = await response2.json();
-
-                // Log the updated user data for debugging
-                console.log('Updated User Data:', updatedUserData);
-
-                // Handle the updated user data as needed (e.g., display it)
-                // ...
-
-            } else {
-                // Handle error cases for updating users
+            if (!response2.ok) {
                 console.error('Failed to update users:', response2.statusText);
-
-                // Notify the user about the failure to update users
                 alert('Failed to update users. Please try again.');
             }
+
+            navigate('/team-details');
         } catch (error) {
             console.error('Error creating team or updating users:', error);
-
-            // Notify the user about the error
-            alert('An error occurred. Please try again.');
+        } finally {
+            setLoading(false);
+            setShowPopup(true);
         }
+    };
+
+    const handleClosePopup = () => {
+        setShowPopup(false);
+    };
+
+    const handleRemoveFromWishlist = (removedUser) => {
+        // Log the removed user information
+        console.log('Removed User:', removedUser);
     };
 
     return (
@@ -91,12 +77,23 @@ const CreateTeam = ({ onCreateTeam, selectedUserIds }) => {
             <label>Team Name:</label>
             <input type="text" value={teamName} onChange={(e) => setTeamName(e.target.value)} />
 
-            {/* Display selected user IDs for testing purposes */}
             <div>
-                Selected User IDs: {selectedUserIds.join(', ')}
+                Selected Users: {selectedUserIds.length}
             </div>
 
-            <button onClick={handleCreateTeam}>Create</button>
+            <button onClick={handleCreateTeam} disabled={loading}>
+                {loading ? 'Creating Team...' : 'Create'}
+            </button>
+
+            <button onClick={() => setShowPopup(true)}>See Users Added</button>
+
+            {showPopup && (
+                <CreatedTeamPop
+                    userIDs={selectedUserIds}
+                    onRemoveFromWishlist={handleRemoveFromWishlist}
+                    onClose={handleClosePopup}
+                />
+            )}
         </div>
     );
 };

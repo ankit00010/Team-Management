@@ -72,23 +72,31 @@ const getUser = asyncHandler(async (req, res) => {
 }
 )
 
-
 const updateUser = asyncHandler(async (req, res) => {
-    const userId = req.params.id;
-    const user = await User.findById(userId);
-    if (!user) {
-        res.status(400);
-        throw new Error("User not found");
+    try {
+        const userIds = req.body._id; // Assuming _id is an array of user IDs
+        const updatedData = { available: false };
+
+        // Updating users based on the array of user IDs
+        const updatedUsers = await Promise.all(
+            userIds.map(async (userId) => {
+                const updatedUser = await User.findByIdAndUpdate(
+                    userId,
+                    updatedData,
+                    { new: true }
+                );
+                return updatedUser;
+            })
+        );
+
+        // Sending the updated user information in the response
+        res.status(200).json(updatedUsers);
+    } catch (error) {
+        // Handle any errors that occurred during the update process
+        res.status(500).json({ error: error.message });
     }
-    // Updating the user
-    const updatedUser = await User.findByIdAndUpdate(
-        req.params.id,
-        req.body,
-        { new: true }
-    );
-    res.status(200).json(updatedUser);
-}
-)
+});
+
 const deleteUser = asyncHandler(async (req, res) => {
     const userId = req.params.id;
     const user = await User.findById(userId);
@@ -151,5 +159,22 @@ const searchUser = asyncHandler(async (req, res) => {
 
 
 
+const getUsersByIds = asyncHandler(async (req, res) => {
+    const userIds = req.body._ids; // Assuming _ids is an array of user IDs
 
-module.exports = { getAllUser, createUser, getUser, updateUser, deleteUser, filterUser, searchUser };
+    try {
+        const users = await User.find({ _id: { $in: userIds } });
+
+        if (!users || users.length === 0) {
+            res.status(404);
+            throw new Error("No users found for the provided IDs");
+        }
+
+        res.json(users);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+
+module.exports = { getAllUser, createUser, getUser, updateUser, deleteUser, filterUser, searchUser, getUsersByIds };
