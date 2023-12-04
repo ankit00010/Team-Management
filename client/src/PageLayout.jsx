@@ -17,7 +17,7 @@ const PageLayout = () => {
     const handleFilterChange = async (filterOptions) => {
         try {
             const { domain, gender, available } = filterOptions;
-            const url = `http://localhost:5000/api/users/filter?domain=${domain || ''}&gender=${gender || ''}&available=${available || ''}&page=1`;
+            const url = `https://user-management-api-two.vercel.app/api/users/filter?domain=${domain || ''}&gender=${gender || ''}&available=${available || ''}&page=1`;
             const response = await fetch(url);
             const data = await response.json();
             setFilteredUsers(data);

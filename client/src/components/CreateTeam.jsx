@@ -17,7 +17,7 @@ const CreateTeam = ({ onCreateTeam, selectedUserIds }) => {
                 userIds: selectedUserIds,
             };
 
-            const response = await fetch('http://localhost:5000/api/team/', {
+            const response = await fetch('https://user-management-api-two.vercel.app/api/team/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

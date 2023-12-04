@@ -7,7 +7,7 @@ const TeamListIndex = () => {
     useEffect(() => {
         const fetchTeams = async () => {
             try {
-                const response = await fetch('http://localhost:5000/api/team');
+                const response = await fetch('https://user-management-api-two.vercel.app/api/team');
                 const data = await response.json();
                 setTeams(data.teams);
             } catch (error) {

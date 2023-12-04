@@ -10,7 +10,7 @@ const Search = ({ onSearch }) => {
         e.preventDefault();
 
         try {
-            const response = await fetch(`http://localhost:5000/api/users/search/${searchTerm}`);
+            const response = await fetch(`https://user-management-api-two.vercel.app/api/users/search/${searchTerm}`);
             const userData = await response.json();
 
             // Assuming userData is an array of users
