@@ -11,8 +11,8 @@ const App = () => {
       <Routes>
         <Route path="/" element={<PageLayout />} />
 
-        <Route path="/team-details" element={<TeamListIndex />} />
-        <Route path="/team-details/:name" element={<TeamDetails />} />
+        <Route path="https://user-management-api-eight.vercel.app/team-details" element={<TeamListIndex />} />
+        <Route path="https://user-management-api-eight.vercel.app/team-details/:name" element={<TeamDetails />} />
       </Routes>
     </Router>
   );
