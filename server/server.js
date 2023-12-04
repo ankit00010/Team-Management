@@ -7,7 +7,14 @@ const connectDB = require('./config/dbconnection')
 dotenv.config();
 connectDB();
 const app = express();
-app.use(cors());
+app.use(cors({
+
+    origin: ["http"],
+    methods: ["POST", "GET"],
+    credentials: true
+
+
+}));
 
 const port = process.env.PORT || 5001; // Use port 5001 as a default
 
