@@ -17,7 +17,7 @@ const CreateTeam = ({ onCreateTeam, selectedUserIds }) => {
                 userIds: selectedUserIds,
             };
 
-            const response = await fetch('https://user-management-api-two.vercel.app/api/team/', {
+            const response = await fetch('https://user-management-api-eight.vercel.app/api/team/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

@@ -1,12 +1,17 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const errorHandler = require('./middleware/errorHandler');
+const cors = require("cors");
 const connectDB = require('./config/dbconnection')
 
 dotenv.config();
 connectDB();
 const app = express();
-
+app.use(cors({
+    origin: ["https://user-management-api-eight.vercel.app/"],
+    methods: ["POST", "GET"],
+    credentials: true
+}));
 
 const port = process.env.PORT || 5001;
 

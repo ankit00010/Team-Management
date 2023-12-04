@@ -11,7 +11,7 @@ const TeamDetails = () => {
     useEffect(() => {
         const fetchTeamDetails = async () => {
             try {
-                const response = await fetch(`https://user-management-api-two.vercel.app/api/team/${name}`);
+                const response = await fetch(`https://user-management-api-eight.vercel.app/api/team/${name}`);
                 const data = await response.json();
                 setTeam(data.team);
             } catch (error) {

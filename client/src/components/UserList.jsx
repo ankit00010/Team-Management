@@ -15,7 +15,7 @@ const UserList = ({ searchResults, filteredUsers, onToggleSelect }) => {
             } else if (filteredUsers && filteredUsers.length > 0) {
                 setUserList(filteredUsers);
             } else {
-                const response = await fetch('https://user-management-api-two.vercel.app/api/users');
+                const response = await fetch('https://user-management-api-eight.vercel.app/api/users');
                 const data = await response.json();
                 setUserList(data);
             }

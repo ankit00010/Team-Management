@@ -10,7 +10,7 @@ const CreateAddedCard = ({ userId, onRemoveFromWishlist }) => {
     useEffect(() => {
         const fetchUserData = async () => {
             try {
-                const response = await fetch('https://user-management-api-two.vercel.app/api/users/getUserByIds', {
+                const response = await fetch('https://user-management-api-eight.vercel.app/api/users/getUserByIds', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
