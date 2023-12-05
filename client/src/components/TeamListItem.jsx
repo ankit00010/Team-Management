@@ -19,6 +19,7 @@ const TeamListItem = ({ teamId }) => {
     }, [teamId]);
     const handleDelete = async () => {
         try {
+            console.log("This is teamID :" + teamId);
             const response = await fetch(`https://user-management-seven-murex.vercel.app/api/team/${teamId}`, {
                 method: 'DELETE',
                 credentials: 'include',
