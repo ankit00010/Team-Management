@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import CreatedTeamPop from './CreatedTeamPop';
 import { useNavigate } from 'react-router-dom';
 
-const CreateTeam = ({ selectedUserIds, setSelectedUserIds }) => {
+const CreateTeam = ({ selectedUserIds, onRemoveFromWishlist }) => {
     const [teamName, setTeamName] = useState('');
     const [showPopup, setShowPopup] = useState(false);
     const [loading, setLoading] = useState(false);
@@ -12,7 +12,6 @@ const CreateTeam = ({ selectedUserIds, setSelectedUserIds }) => {
         try {
             setLoading(true);
 
-            // Check if the number of selected users exceeds the limit (10)
             const maxUsersLimit = 10;
             if (selectedUserIds.length > maxUsersLimit) {
                 alert(`Cannot create a team with more than ${maxUsersLimit} users due to potential overloading on the database.`);
@@ -41,7 +40,6 @@ const CreateTeam = ({ selectedUserIds, setSelectedUserIds }) => {
                 setTeamName('');
                 alert('Team created successfully!');
                 navigate('/team-details');
-
             } else {
                 console.error('Failed to create team:', response.statusText);
                 alert('Failed to create team. Please check user is available.');
@@ -75,11 +73,15 @@ const CreateTeam = ({ selectedUserIds, setSelectedUserIds }) => {
         setShowPopup(false);
     };
 
-    const handleRemoveFromWishlist = (removedUserId) => {
-        const updatedUserIds = selectedUserIds.filter(id => id !== removedUserId);
-        setSelectedUserIds(updatedUserIds);
+    const handleRemoveFromWishlist = (removedUser) => {
+        // Remove the user from selectedUserIds
+        const updatedUserIds = selectedUserIds.filter(id => id !== removedUser._id);
+
+        // Update the prop with the new array
+        onRemoveFromWishlist(updatedUserIds);
+
         // Log the removed user information
-        console.log('Removed User ID:', removedUserId);
+        console.log('Removed User:', removedUser);
     };
 
     return (
