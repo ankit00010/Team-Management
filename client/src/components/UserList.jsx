@@ -15,7 +15,7 @@ const UserList = ({ searchResults, filteredUsers, onToggleSelect }) => {
                 } else if (filteredUsers && filteredUsers.length > 0) {
                     data = filteredUsers;
                 } else {
-                    const response = await fetch('https://user-management-api-eight.vercel.app/api/users');
+                    const response = await fetch('https://user-management-seven-murex.vercel.app/api/users');
                     data = await response.json();
                 }
 
@@ -41,7 +41,7 @@ const UserList = ({ searchResults, filteredUsers, onToggleSelect }) => {
             }
             // Fetch all users if neither search results nor filtered users are available
             else {
-                const response = await fetch('https://user-management-api-eight.vercel.app/api/users');
+                const response = await fetch('https://user-management-seven-murex.vercel.app/api/users');
                 const data = await response.json();
                 setUserList(data);
             }

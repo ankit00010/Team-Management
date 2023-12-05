@@ -27,7 +27,7 @@ const Filter = ({ onFilterChange }) => {
 
         try {
             const { domain, gender, available } = filterOptions;
-            const url = `http://localhost:5000/api/users/filter?domain=${domain || ''}&gender=${gender || ''}&available=${available || ''}&page=1`;
+            const url = `https://user-management-seven-murex.vercel.app/api/users/filter?domain=${domain || ''}&gender=${gender || ''}&available=${available || ''}&page=1`;
             const response = await fetch(url);
             const data = await response.json();
             onFilterChange(data); // Notify the parent about the filtered options

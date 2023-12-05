@@ -10,7 +10,7 @@ const TeamListIndex = () => {
         const fetchTeams = async () => {
             try {
                 // Fetch the list of teams
-                const response = await fetch('https://user-management-api-eight.vercel.app/api/team');
+                const response = await fetch('https://user-management-seven-murex.vercel.app/api/team');
                 const data = await response.json();
                 // Set the list of teams in the state
                 setTeams(data.teams);

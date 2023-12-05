@@ -21,7 +21,7 @@ const CreateTeam = ({ selectedUserIds }) => {
             };
 
             // Send a request to create a new team
-            const response = await fetch('https://user-management-api-eight.vercel.app/api/team/', {
+            const response = await fetch('https://user-management-seven-murex.vercel.app/api/team/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -39,7 +39,7 @@ const CreateTeam = ({ selectedUserIds }) => {
                 alert('Failed to create team. Please try again.');
             }
 
-            const response2 = await fetch('https://user-management-api-eight.vercel.app/api/users', {
+            const response2 = await fetch('https://user-management-seven-murex.vercel.app/api/users', {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

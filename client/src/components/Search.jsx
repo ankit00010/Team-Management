@@ -9,13 +9,16 @@ const Search = ({ onSearch }) => {
 
     const debouncedSearch = debounce(async (value) => {
         try {
-            const response = await fetch(`https://user-management-api-eight.vercel.app/api/users/search/${value}`);
+            const response = await fetch(`https://user-management-seven-murex.vercel.app/api/users/search/${value}`);
             const userData = await response.json();
             onSearch(userData.data);
         } catch (error) {
             console.error('Error searching users:', error);
             onSearch([]);
         }
+
+
+
     }, 300); // Adjust the debounce delay as needed
 
     const handleChange = (e) => {

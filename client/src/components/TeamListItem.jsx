@@ -10,7 +10,7 @@ const TeamListItem = ({ teamId }) => {
         const fetchTeamName = async () => {
             try {
                 // Fetch team details based on the teamId
-                const response = await fetch(`https://user-management-api-eight.vercel.app/api/team/${teamId}`);
+                const response = await fetch(`https://user-management-seven-murex.vercel.app/api/team/${teamId}`);
                 const data = await response.json();
                 // Set the team details in the state
                 setTeam(data.team);
