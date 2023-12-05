@@ -14,7 +14,7 @@ const Search = ({ onSearch }) => {
 
             onSearch(userData.data);
         } catch (error) {
-            console.error('Error searching users:', error);
+         
             onSearch([]);
         }
     };
