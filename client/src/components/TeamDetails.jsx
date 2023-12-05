@@ -4,12 +4,9 @@ import { Card, ListGroup } from 'react-bootstrap';
 import "../../public/styles/main.css";
 
 const TeamDetails = () => {
-    // Extract team name from the route parameters
     const { name } = useParams();
-    // State to manage the team details
     const [team, setTeam] = useState(null);
 
-    // Effect to fetch team details when the component mounts or the team name changes
     useEffect(() => {
         const fetchTeamDetails = async () => {
             try {
