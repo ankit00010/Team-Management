@@ -12,6 +12,14 @@ const CreateTeam = ({ onCreateTeam, selectedUserIds }) => {
         try {
             setLoading(true);
 
+            // Check if the number of selected users exceeds the limit (10)
+            const maxUsersLimit = 10;
+            if (selectedUserIds.length > maxUsersLimit) {
+                alert(`Cannot create a team with more than ${maxUsersLimit} users due to potential overloading on the database.`);
+                setLoading(false);
+                return;
+            }
+
             const teamData = {
                 name: teamName,
                 userIds: selectedUserIds,

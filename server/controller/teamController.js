@@ -6,44 +6,42 @@ const createTeam = asyncHandler(async (req, res) => {
     const { name, userIds } = req.body;
 
     try {
-        // Validation
         if (!name || !userIds || !Array.isArray(userIds) || userIds.length === 0) {
             return res.status(400).json({ message: 'Invalid input. Please provide a valid team name and an array of user IDs.' });
         }
 
-        // Fetch selected users
         const selectedUsers = await User.find({ _id: { $in: userIds } });
 
-        // Check for unique user IDs
         const uniqueUserIds = new Set(userIds);
         if (uniqueUserIds.size !== userIds.length) {
             return res.status(400).json({ message: 'Each user should be represented only once in the team.' });
         }
 
-        // Check for availability
         if (selectedUsers.some(user => !user.available)) {
             return res.status(400).json({ message: 'All selected users must be marked as available.' });
         }
 
-        // Check if a team with the same name already exists
         const existingTeam = await Team.findOne({ name });
         if (existingTeam) {
             return res.status(400).json({ message: 'A team with the same name already exists.' });
         }
 
-        // Create Team
+        const teamSizeLimit = 10;
+        if (userIds.length > teamSizeLimit) {
+            return res.status(400).json({ message: `Cannot create a team with more than ${teamSizeLimit} users.` });
+        }
+
         const team = new Team({ name, users: userIds });
         await team.save();
 
-        // Response
         res.status(201).json({ message: 'Team created successfully', team });
     } catch (error) {
         console.error('Error creating team:', error);
 
-        // Response with detailed error message (for development purposes)
         res.status(500).json({ message: 'Internal Server Error', error: error.message });
     }
 });
+
 
 
 
