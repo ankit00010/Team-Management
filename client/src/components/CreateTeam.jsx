@@ -3,20 +3,24 @@ import CreatedTeamPop from './CreatedTeamPop';
 import { useNavigate } from 'react-router-dom';
 
 const CreateTeam = ({ selectedUserIds }) => {
+    // State to manage team name, popup visibility, loading state, and navigation
     const [teamName, setTeamName] = useState('');
     const [showPopup, setShowPopup] = useState(false);
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
+    // Function to handle team creation and user update
     const handleCreateTeam = async () => {
         try {
             setLoading(true);
 
+            // Prepare team data for the API request
             const teamData = {
                 name: teamName,
                 userIds: selectedUserIds,
             };
 
+            // Send a request to create a new team
             const response = await fetch('https://user-management-api-eight.vercel.app/api/team/', {
                 method: 'POST',
                 headers: {
@@ -25,8 +29,7 @@ const CreateTeam = ({ selectedUserIds }) => {
                 body: JSON.stringify(teamData),
             });
 
-          
-            
+            // Check the response status and show appropriate messages
             if (response.ok) {
                 setTeamName('');
                 alert('Team created successfully!');
@@ -35,6 +38,7 @@ const CreateTeam = ({ selectedUserIds }) => {
                 alert('Failed to create team. Please try again.');
             }
 
+            // Update selected users to mark them as unavailable
             const response2 = await fetch('http://localhost:5000/api/users', {
                 method: 'PUT',
                 headers: {
@@ -46,24 +50,29 @@ const CreateTeam = ({ selectedUserIds }) => {
                 }),
             });
 
+            // Check the response status for user update
             if (!response2.ok) {
                 console.error('Failed to update users:', response2.statusText);
                 alert('Failed to update users. Please try again.');
             }
 
+            // Navigate to the team-details page
             navigate('/team-details');
         } catch (error) {
             console.error('Error creating team or updating users:', error);
         } finally {
+            // Reset loading state and show the user popup
             setLoading(false);
             setShowPopup(true);
         }
     };
 
+    // Function to close the user popup
     const handleClosePopup = () => {
         setShowPopup(false);
     };
 
+    // Placeholder function to handle removed users from the wishlist
     const handleRemoveFromWishlist = (removedUser) => {
         // Log the removed user information
         console.log('Removed User:', removedUser);
