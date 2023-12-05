@@ -24,9 +24,10 @@ const Search = ({ onSearch }) => {
 
         // Check if the value is empty
         if (value.trim() === '') {
+            console.log('Search term is empty. Do not perform search.');
             // Reset the state or perform any other action
             setSearchTerm('');
-            onSearch([]); // Assuming you want to clear the search results when the input is empty
+            onSearch([]); // Clear the search results
             return;
         }
 

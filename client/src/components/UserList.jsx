@@ -10,11 +10,14 @@ const UserList = ({ searchResults, filteredUsers, onToggleSelect }) => {
         const fetchData = async () => {
             try {
                 let data = [];
+
+                // Check if searchResults or filteredUsers is provided
                 if (searchResults && searchResults.length > 0) {
                     data = searchResults;
                 } else if (filteredUsers && filteredUsers.length > 0) {
                     data = filteredUsers;
                 } else {
+                    // If neither searchResults nor filteredUsers is provided, fetch all users
                     const response = await fetch('https://user-management-seven-murex.vercel.app/api/users');
                     data = await response.json();
                 }

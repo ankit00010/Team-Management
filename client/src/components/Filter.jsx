@@ -26,6 +26,7 @@ const Filter = ({ onFilterChange }) => {
         }));
     };
 
+
     const fetchFilteredData = async () => {
         try {
             const { domain, gender, available } = filterOptions;
