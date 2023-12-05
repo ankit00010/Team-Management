@@ -41,8 +41,15 @@ const TeamListItem = ({ teamId }) => {
     return (
         <div className="team-list-item">
             {team.name && <h2>{team.name}</h2>}
-            <Link to={`/team-details/${team.name}`} className="team-list-item-link">
-                View Details
+            <Link
+                to={`/team-details/${team.name}`}
+                className="team-list-item-link"
+                style={{
+                    color: '#007bff',
+                    textDecoration: 'none',
+                }}
+            >
+                Details
             </Link>
             <button
                 onClick={handleDelete}
@@ -54,7 +61,7 @@ const TeamListItem = ({ teamId }) => {
                     padding: '5px 10px',
                     cursor: 'pointer',
                     borderRadius: '5px',
-                    display: flex,
+                    display: 'flex',
                     justifyContent: 'flex-end',
                 }}
             >
