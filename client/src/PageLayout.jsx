@@ -6,31 +6,18 @@ import UserList from './components/UserList';
 import CreateTeam from './components/CreateTeam';
 
 const PageLayout = () => {
-    // State to manage search results, filtered users, and selected user IDs
     const [searchResults, setSearchResults] = useState([]);
     const [filteredUsers, setFilteredUsers] = useState([]);
     const [selectedUserIds, setSelectedUserIds] = useState([]);
 
-    // Function to handle user search and update search results
     const handleSearch = (userData) => {
         setSearchResults(userData);
     };
 
-    // Function to handle filter change and update filtered users
-    const handleFilterChange = async (filterOptions) => {
-        try {
-            const { domain, gender, available } = filterOptions;
-            const url = `https://user-management-api-eight.vercel.app/api/users/filter?domain=${domain || ''}&gender=${gender || ''}&available=${available || ''}&page=1`;
-            const response = await fetch(url);
-            const data = await response.json();
-            setFilteredUsers(data);
-        } catch (error) {
-            console.error('Error fetching filtered users:', error);
-            setFilteredUsers([]);
-        }
+    const handleFilterChange = (filteredUsers) => {
+        setFilteredUsers(filteredUsers);
     };
 
-    // Function to handle user selection
     const handleToggleSelect = (userId) => {
         const isSelected = selectedUserIds.includes(userId);
 
@@ -41,12 +28,10 @@ const PageLayout = () => {
         }
     };
 
-    // Effect to initialize filtered users on component mount
     useEffect(() => {
-        handleFilterChange({});
-    }, []);
+        // You can add any additional logic here if needed
+    }, [filteredUsers]); // Trigger effect when filteredUsers change
 
-    // Render the page layout with search, filter, team creation, user list, and footer components
     return (
         <div>
             <UserSearch onSearch={handleSearch} />
