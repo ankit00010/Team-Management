@@ -19,21 +19,23 @@ const Filter = ({ onFilterChange }) => {
         'UI Designing',
     ];
 
-    const handleOptionClick = async (option, value) => {
+    const handleOptionClick = (option, value) => {
         setFilterOptions((prevOptions) => ({
             ...prevOptions,
             [option]: prevOptions[option] === value ? '' : value,
         }));
+    };
 
+    const fetchFilteredData = async () => {
         try {
             const { domain, gender, available } = filterOptions;
             const url = `https://user-management-seven-murex.vercel.app/api/users/filter?domain=${domain || ''}&gender=${gender || ''}&available=${available || ''}&page=1`;
             const response = await fetch(url);
             const data = await response.json();
-            onFilterChange(data); // Notify the parent about the filtered options
+            onFilterChange(data);
         } catch (error) {
             console.error('Error fetching filtered users:', error);
-            onFilterChange([]); // Notify the parent with an empty array in case of an error
+            onFilterChange([]);
         }
     };
 
