@@ -88,5 +88,18 @@ const getAllTeams = asyncHandler(async (req, res) => {
     }
 });
 
+
+
+const deleteUser = asyncHandler(async (req, res) => {
+    const id = req.params.id;
+
+    if (!id) {
+        res.status(500).json({ message: "Server Error" });
+    }
+
+
+    const deleteUser = await Team.findByIdAndDelete(id);
+    res.json(deleteUser);
+});
 // Export the controller functions for use in routes
-module.exports = { getTeam, createTeam, getAllTeams };
+module.exports = { getTeam, createTeam, getAllTeams, deleteUser };
