@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import CreatedTeamPop from './CreatedTeamPop';
 import { useNavigate } from 'react-router-dom';
 
-const CreateTeam = ({ onCreateTeam, selectedUserIds }) => {
+const CreateTeam = ({ selectedUserIds }) => {
     const [teamName, setTeamName] = useState('');
     const [showPopup, setShowPopup] = useState(false);
     const [loading, setLoading] = useState(false);
