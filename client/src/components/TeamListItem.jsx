@@ -47,7 +47,15 @@ const TeamListItem = ({ teamId }) => {
             <button
                 onClick={handleDelete}
                 className="delete-button"
-                title="Delete Team"
+                style={{
+                    backgroundColor: '#dc3545',
+                    color: '#fff',
+                    border: 'none',
+                    padding: '5px 10px',
+                    cursor: 'pointer',
+                    borderRadius: '5px',
+                    marginLeft: 'auto', // Align to the right
+                }}
             >
                 Delete
             </button>
