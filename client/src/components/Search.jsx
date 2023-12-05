@@ -16,14 +16,20 @@ const Search = ({ onSearch }) => {
             console.error('Error searching users:', error);
             onSearch([]);
         }
-
-
-
     }, 300);
 
     const handleChange = (e) => {
         const { value } = e.target;
         setSearchTerm(value);
+
+        // Check if the value is empty
+        if (value.trim() === '') {
+            // Reset the state or perform any other action
+            setSearchTerm('');
+            onSearch([]); // Assuming you want to clear the search results when the input is empty
+            return;
+        }
+
         debouncedSearch(value);
     };
 
