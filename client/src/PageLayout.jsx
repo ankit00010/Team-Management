@@ -27,7 +27,6 @@ const PageLayout = () => {
 
     return (
         <div>
-            <p>Number of re-renders: {renderCount}</p>
             <UserSearch onSearch={handleSearch} />
             <Filter onFilterChange={setFilteredUsers} />
             <CreateTeam selectedUserIds={selectedUserIds} />
