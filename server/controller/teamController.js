@@ -100,7 +100,7 @@ const deleteUser = asyncHandler(async (req, res) => {
     }
 
     try {
-        const deletedTeam = await Team.findByIdAndDelete(team._id);
+        const deletedTeam = await Team.findOneAndDelete({ name: teamName });
 
         if (!deletedTeam) {
             return res.status(404).json({ message: 'Team not found for deletion' });
