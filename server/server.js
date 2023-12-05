@@ -14,7 +14,9 @@ app.use(cors({
 }));
 
 const port = process.env.PORT || 5001;
-
+app.get("/", (req, res) => {
+    console.log("Server is running");
+})
 app.use(express.json());
 
 app.use('/api/users', require('./router/userRoutes'));
