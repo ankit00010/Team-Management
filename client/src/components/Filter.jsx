@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import "../../public/styles/main.css";
 
@@ -19,29 +19,23 @@ const Filter = ({ onFilterChange }) => {
         'UI Designing',
     ];
 
-    const handleOptionClick = (option, value) => {
+    const handleOptionClick = async (option, value) => {
         setFilterOptions((prevOptions) => ({
             ...prevOptions,
             [option]: prevOptions[option] === value ? '' : value,
         }));
+
+        try {
+            const { domain, gender, available } = filterOptions;
+            const url = `http://localhost:5000/api/users/filter?domain=${domain || ''}&gender=${gender || ''}&available=${available || ''}&page=1`;
+            const response = await fetch(url);
+            const data = await response.json();
+            onFilterChange(data); // Notify the parent about the filtered options
+        } catch (error) {
+            console.error('Error fetching filtered users:', error);
+            onFilterChange([]); // Notify the parent with an empty array in case of an error
+        }
     };
-
-    useEffect(() => {
-        const fetchFilteredUsers = async () => {
-            try {
-                const { domain, gender, available } = filterOptions;
-                const url = `http://localhost:5000/api/users/filter?domain=${domain || ''}&gender=${gender || ''}&available=${available || ''}&page=1`;
-                const response = await fetch(url);
-                const data = await response.json();
-                onFilterChange(data);
-            } catch (error) {
-                console.error('Error fetching filtered users:', error);
-                onFilterChange([]);
-            }
-        };
-
-        fetchFilteredUsers();
-    }, [filterOptions, onFilterChange]);
 
     return (
         <div className="filter-container">
