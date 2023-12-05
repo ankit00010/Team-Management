@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react';
 import Card from 'react-bootstrap/Card';
 
 const CreateAddedCard = ({ userId, onRemoveFromWishlist }) => {
+    // State to manage user data, loading state, error, and display flag
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [shouldDisplay, setShouldDisplay] = useState(true);
 
+    // Effect to fetch user data when the component mounts or when userId changes
     useEffect(() => {
         const fetchUserData = async () => {
             try {
@@ -35,15 +37,15 @@ const CreateAddedCard = ({ userId, onRemoveFromWishlist }) => {
         fetchUserData();
     }, [userId]);
 
+    // Handler to remove user from the wishlist and hide the card
     const handleRemoveFromWishlist = () => {
         onRemoveFromWishlist(user);
         setShouldDisplay(false);
-
     };
-
 
     return (
         <div>
+            {/* Conditionally render the card based on loading, error, and shouldDisplay states */}
             {shouldDisplay && (
                 <div>
                     {loading && <p>Loading user details...</p>}
