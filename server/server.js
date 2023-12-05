@@ -8,9 +8,10 @@ dotenv.config();
 connectDB();
 const app = express();
 app.use(cors({
-    origin: ["https://user-management-app-ten.vercel.app"],
-    methods: ["POST", "GET", "PUT", "DELETE"],
-    credentials: true
+    origin: 'https://user-management-app-ten.vercel.app',
+    methods: ['POST', 'GET', 'PUT', 'DELETE'],
+    credentials: true,
+    allowedHeaders: 'Content-Type,Authorization',
 }));
 
 const port = process.env.PORT || 5001;
