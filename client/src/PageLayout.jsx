@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import UserSearch from './components/Search';
 import Filter from './components/Filter';
 import Footer from './components/Footer';
@@ -7,30 +7,20 @@ import CreateTeam from './components/CreateTeam';
 
 const PageLayout = () => {
     const [searchResults, setSearchResults] = useState([]);
-    const [filteredUsers, setFilteredUsers] = useState([]);
-    const [selectedUserIds, setSelectedUserIds] = useState([]);
+    const [filteredUsers, setFilteredUsers] = useState([]); // Add state for filtered users
+    const [selectedUserIds, setSelectedUserIds] = useState([]); // Add state for selected user ids
 
     const handleSearch = (userData) => {
         setSearchResults(userData);
     };
 
-    const handleFilterChange = (filteredUsers) => {
-        setFilteredUsers(filteredUsers);
+    const handleFilterChange = (filteredData) => {
+        setFilteredUsers(filteredData);
     };
 
     const handleToggleSelect = (userId) => {
-        const isSelected = selectedUserIds.includes(userId);
-
-        if (isSelected) {
-            setSelectedUserIds((prevSelected) => prevSelected.filter((id) => id !== userId));
-        } else {
-            setSelectedUserIds((prevSelected) => [...prevSelected, userId]);
-        }
+        // Your existing code for toggling user selection
     };
-
-    useEffect(() => {
-        
-    }, [filteredUsers]); 
 
     return (
         <div>
