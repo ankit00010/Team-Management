@@ -1,3 +1,7 @@
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import '../../public/styles/main.css';
+
 const TeamListItem = ({ teamId, setTeams, teams }) => {
     const [team, setTeam] = useState(null);
 
@@ -17,7 +21,6 @@ const TeamListItem = ({ teamId, setTeams, teams }) => {
 
     const handleDelete = async () => {
         try {
-            console.log("This is teamID: " + teamId);
             const response = await fetch(`https://user-management-seven-murex.vercel.app/api/team/${teamId}`, {
                 method: 'DELETE',
                 credentials: 'include',
