@@ -8,6 +8,7 @@
 - [Node.js](https://nodejs.org/) (v14.0.0 or later): JavaScript runtime for the server.
 - [Mongoose](https://mongoosejs.com/) (v5.13.3): ODM for MongoDB and Node.js.
 
+
 ## Overview
 
 This Team Management System is a web application built using the MERN (MongoDB, Express.js, React.js, Node.js) stack. It allows users to manage teams, add team members, search and filter users based on domain, gender, and availability. Users can also view a list of teams, delete teams, and view detailed information about each team.
@@ -24,9 +25,9 @@ This Team Management System is a web application built using the MERN (MongoDB, 
 
 ### Team Creation
 
-1. Navigate to the "Teams" section.
-2. Click on the "Create Team" button.
-3. Assign a team name and add users to the team.
+
+1. Click on the "Create Team" button.
+2. Assign a team name and add users to the team.
 
 ### Search and Filter
 
