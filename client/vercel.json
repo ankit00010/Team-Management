@@ -1,0 +1,23 @@
+{
+    "routes": [
+        {
+            "src": "/components/TeamDetails.jsx",
+            "dest": "/components/TeamDetails.jsx"
+        },
+        {
+            "src": "/components/TeamListIndex.jsx",
+            "dest": "/components/TeamListIndex.jsx"
+        },
+        {
+            "src": "/styles/*",
+            "dest": "/public/styles/:1"
+        },
+        {
+            "handle": "filesystem"
+        },
+        {
+            "src": "/.*",
+            "dest": "/index.html"
+        }
+    ]
+}
