@@ -6,14 +6,17 @@ import UserList from './components/UserList';
 import CreateTeam from './components/CreateTeam';
 
 const PageLayout = () => {
+    // State to manage search results, filtered users, and selected user IDs
     const [searchResults, setSearchResults] = useState([]);
     const [filteredUsers, setFilteredUsers] = useState([]);
     const [selectedUserIds, setSelectedUserIds] = useState([]);
 
+    // Function to handle user search and update search results
     const handleSearch = (userData) => {
         setSearchResults(userData);
     };
 
+    // Function to handle filter change and update filtered users
     const handleFilterChange = async (filterOptions) => {
         try {
             const { domain, gender, available } = filterOptions;
@@ -27,6 +30,7 @@ const PageLayout = () => {
         }
     };
 
+    // Function to handle user selection
     const handleToggleSelect = (userId) => {
         const isSelected = selectedUserIds.includes(userId);
 
@@ -37,19 +41,17 @@ const PageLayout = () => {
         }
     };
 
-
-
+    // Effect to initialize filtered users on component mount
     useEffect(() => {
         handleFilterChange({});
     }, []);
 
+    // Render the page layout with search, filter, team creation, user list, and footer components
     return (
         <div>
             <UserSearch onSearch={handleSearch} />
             <Filter onFilterChange={handleFilterChange} />
-            <CreateTeam
-                selectedUserIds={selectedUserIds}
-            />
+            <CreateTeam selectedUserIds={selectedUserIds} />
             <UserList
                 searchResults={searchResults}
                 filteredUsers={filteredUsers}
