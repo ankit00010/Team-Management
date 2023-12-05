@@ -33,7 +33,7 @@ const CreateAddedCard = ({ userId, onRemoveFromWishlist }) => {
         };
 
         fetchUserData();
-    }, [user._id]);
+    }, [userId]);
 
     const handleRemoveFromWishlist = () => {
         onRemoveFromWishlist(user);
