@@ -8,7 +8,7 @@ const router = express.Router();
 router.get('/', getAllTeams);
 router.post("/", createTeam);
 router.get("/:name", getTeam);
-router.delete("/:id", deleteUser)
+router.delete("/:name", deleteUser)
 
 
 module.exports = router;

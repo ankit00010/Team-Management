@@ -78,6 +78,7 @@ const getTeam = asyncHandler(async (req, res) => {
 
 // Controller function for retrieving all teams
 const getAllTeams = asyncHandler(async (req, res) => {
+    const teamName = req.params.name;
     try {
         // Find all teams and return only their names
         const teams = await Team.find({}, 'name');
@@ -89,17 +90,28 @@ const getAllTeams = asyncHandler(async (req, res) => {
 });
 
 
-
 const deleteUser = asyncHandler(async (req, res) => {
-    const id = req.params.id;
+    const teamName = req.params.name;
 
-    if (!id) {
-        res.status(500).json({ message: "Server Error" });
+    const team = await Team.findOne({ name: teamName });
+
+    if (!team) {
+        return res.status(404).json({ message: 'Team not found' });
     }
 
+    try {
+        const deletedTeam = await Team.findByIdAndDelete(team._id);
 
-    const deleteUser = await Team.findByIdAndDelete(id);
-    res.json(deleteUser);
+        if (!deletedTeam) {
+            return res.status(404).json({ message: 'Team not found for deletion' });
+        }
+
+        res.json(deletedTeam);
+    } catch (error) {
+        console.error('Error deleting team:', error);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
 });
-// Export the controller functions for use in routes
+
+
 module.exports = { getTeam, createTeam, getAllTeams, deleteUser };
