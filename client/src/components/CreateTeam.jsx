@@ -25,10 +25,8 @@ const CreateTeam = ({ selectedUserIds }) => {
                 body: JSON.stringify(teamData),
             });
 
-            // Log the entire response for debugging
-            console.log('Server Response (Create Team):', response);
-
-            // Check if the request was successful (status code 2xx)
+          
+            
             if (response.ok) {
                 setTeamName('');
                 alert('Team created successfully!');
