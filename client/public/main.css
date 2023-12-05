@@ -134,3 +134,15 @@ body {
     margin-bottom: 20px;
     color: rgb(149, 149, 200);
 }
+
+
+
+/* delete button */
+.delete-button {
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}

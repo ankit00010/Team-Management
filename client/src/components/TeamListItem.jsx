@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { BsTrash } from 'react-icons/bs';
+import './TeamListItem.css';
 
 const TeamListItem = ({ teamId }) => {
     const [team, setTeam] = useState(null);
@@ -26,7 +26,7 @@ const TeamListItem = ({ teamId }) => {
             });
 
             if (response.ok) {
-                console.log('Team deleted successfully');
+                alert('Team deleted successfully!');
             } else {
                 console.error('Failed to delete team');
             }
@@ -45,8 +45,12 @@ const TeamListItem = ({ teamId }) => {
             <Link to={`/team-details/${team.name}`} className="team-list-item-link">
                 View Details
             </Link>
-            <button onClick={handleDelete} className="btn btn-danger" title="Delete Team">
-                <BsTrash />
+            <button
+                onClick={handleDelete}
+                className="delete-button"
+                title="Delete Team"
+            >
+                Delete
             </button>
         </div>
     );
