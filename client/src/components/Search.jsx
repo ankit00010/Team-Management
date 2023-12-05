@@ -5,14 +5,13 @@ import '../../public/styles/main.css';
 const Search = ({ onSearch }) => {
     const [searchTerm, setSearchTerm] = useState('');
 
-    const handleSearch = async (e) => {
-        e.preventDefault();
+    const handleSearch = async (value) => {
+        setSearchTerm(value);
 
         try {
-            const response = await fetch(`https://user-management-api-eight.vercel.app/api/users/search/${searchTerm}`);
+            const response = await fetch(`https://user-management-api-eight.vercel.app/api/users/search/${value}`);
             const userData = await response.json();
 
-            // Assuming userData is an array of users
             onSearch(userData.data);
         } catch (error) {
             console.error('Error searching users:', error);
@@ -20,22 +19,10 @@ const Search = ({ onSearch }) => {
         }
     };
 
-    const handleClear = () => {
-        setSearchTerm('');
-        onSearch([]); // Clear search results
-    };
-
     const handleChange = (e) => {
-        setSearchTerm(e.target.value);
+        const { value } = e.target;
+        handleSearch(value);
     };
-
-    const handleKeyDown = (e) => {
-        if (e.key === 'Enter') {
-            e.preventDefault();
-            handleSearch(e);
-        }
-    };
-
 
     return (
         <Navbar expand="lg" bg="primary" variant="dark">
@@ -50,14 +37,10 @@ const Search = ({ onSearch }) => {
                             className="me-2"
                             aria-label="Search"
                             onChange={handleChange}
-                            onKeyDown={handleKeyDown} // Handle "Enter" key press
                             value={searchTerm}
                         />
-                        <Button variant="outline-light" onClick={handleSearch}>
+                        <Button variant="outline-light" disabled>
                             Search
-                        </Button>
-                        <Button variant="outline-danger" onClick={handleClear}>
-                            Clear
                         </Button>
                     </Form>
                     <Nav className="ms-auto">
