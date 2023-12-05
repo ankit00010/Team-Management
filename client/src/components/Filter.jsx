@@ -5,8 +5,8 @@ import debounce from 'lodash/debounce';
 
 const Filter = ({ onFilterChange }) => {
     const [filterOptions, setFilterOptions] = useState({
-        domain: 'Business Development',
-        available: 'Yes',
+        domain: '',
+        available: 'true',
         gender: 'Male',
     });
 
