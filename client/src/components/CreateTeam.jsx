@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import CreatedTeamPop from './CreatedTeamPop';
 import { useNavigate } from 'react-router-dom';
 
-const CreateTeam = ({ selectedUserIds }) => {
+const CreateTeam = ({ onCreateTeam, selectedUserIds }) => {
     const [teamName, setTeamName] = useState('');
     const [showPopup, setShowPopup] = useState(false);
     const [loading, setLoading] = useState(false);
@@ -33,11 +33,12 @@ const CreateTeam = ({ selectedUserIds }) => {
                 setTeamName('');
                 alert('Team created successfully!');
             } else {
-                console.error('Failed to create team:', response.statusText);
+                const errorText = await response.text();
+                console.error('Failed to create team:', errorText);
                 alert('Failed to create team. Please try again.');
             }
 
-            const response2 = await fetch('http://localhost:5000/api/users', {
+            const response2 = await fetch('https://user-management-api-eight.vercel.app/api/users', {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

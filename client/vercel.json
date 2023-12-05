@@ -6,7 +6,7 @@
         },
         {
             "src": "/components/TeamListIndex.jsx",
-            "dest": "/components/TeamListIndex.jsx"
+            "dest": "/team-details"
         },
         {
             "src": "/styles/*",

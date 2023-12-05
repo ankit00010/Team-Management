@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Form from 'react-bootstrap/Form';
 import "../../public/styles/main.css";
-
+import debounce from 'lodash/debounce';
 const Filter = ({ onFilterChange }) => {
     const [filterOptions, setFilterOptions] = useState({
-        domain: '',
+        domain: 'Business Development',
         available: '',
         gender: '',
     });
@@ -26,10 +26,28 @@ const Filter = ({ onFilterChange }) => {
         }));
     };
 
-    useEffect(() => {
-        onFilterChange(filterOptions);
-    }, [filterOptions, onFilterChange]);
+    const fetchFilteredData = async () => {
+        try {
+            const { domain, gender, available } = filterOptions;
+            const url = `https://user-management-api-eight.vercel.app/api/users/filter?domain=${domain || ''}&gender=${gender || ''}&available=${available || ''}&page=1`;
+            const response = await fetch(url);
+            const data = await response.json();
+            onFilterChange(data);
+        } catch (error) {
+            console.error('Error fetching filtered users:', error);
+            onFilterChange([]);
+        }
+    };
 
+    useEffect(() => {
+        const debounceFilterChange = debounce(fetchFilteredData, 300);
+
+        debounceFilterChange();
+
+        return () => {
+            debounceFilterChange.cancel();
+        };
+    }, [filterOptions, onFilterChange]);
     return (
         <div className="filter-container">
             <Form>

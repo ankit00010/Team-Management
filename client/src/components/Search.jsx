@@ -1,27 +1,27 @@
 import React, { useState } from 'react';
 import { Navbar, Container, Form, Button, Nav } from 'react-bootstrap';
+import debounce from 'lodash/debounce';  // Fix the typo here
+
 import '../../public/styles/main.css';
 
 const Search = ({ onSearch }) => {
     const [searchTerm, setSearchTerm] = useState('');
 
-    const handleSearch = async (value) => {
-        setSearchTerm(value);
-
+    const debouncedSearch = debounce(async (value) => {
         try {
             const response = await fetch(`https://user-management-api-eight.vercel.app/api/users/search/${value}`);
             const userData = await response.json();
-
             onSearch(userData.data);
         } catch (error) {
             console.error('Error searching users:', error);
             onSearch([]);
         }
-    };
+    }, 300); // Adjust the debounce delay as needed
 
     const handleChange = (e) => {
         const { value } = e.target;
-        handleSearch(value);
+        setSearchTerm(value);
+        debouncedSearch(value);
     };
 
     return (

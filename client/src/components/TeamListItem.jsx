@@ -25,10 +25,11 @@ const TeamListItem = ({ teamId }) => {
     return (
         <Link to={`/team-details/${team.name}`} className="team-list-item-link">
             <div className="team-list-item">
-                <h2>{team.name}</h2>
+                {team.name && <h2>{team.name}</h2>}
             </div>
         </Link>
     );
+
 };
 
 export default TeamListItem;

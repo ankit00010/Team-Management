@@ -6,6 +6,7 @@ const createTeam = asyncHandler(async (req, res) => {
     const { name, userIds } = req.body;
 
     try {
+        // Validation
         if (!name || !userIds || !Array.isArray(userIds) || userIds.length === 0) {
             return res.status(400).json({ message: 'Invalid input. Please provide a valid team name and an array of user IDs.' });
         }

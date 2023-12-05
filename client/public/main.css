@@ -1,0 +1,136 @@
+/* App.css */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #1e1e1e;
+    /* Dark Blue color */
+    color: #fff;
+    /* White color for text */
+}
+
+.app {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.user-avatar {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+/* Filter.css */
+.filter-container {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.form-check-inline {
+    margin-right: 20px;
+}
+
+.form-check-label {
+    margin-left: 5px;
+}
+
+.form-check-input:checked {
+    background-color: #000;
+}
+
+.error-messages {
+    color: #ff0000;
+    /* Red color for error messages */
+    margin-bottom: 16px;
+}
+
+
+.team-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 16px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+.team-card h3 {
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.team-card p {
+    margin-bottom: 8px;
+    color: #666;
+}
+
+.team-card ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.team-card li {
+    margin-bottom: 4px;
+    color: #444;
+}
+
+.team-card a {
+    display: block;
+    margin-top: 16px;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.team-card a:hover {
+    text-decoration: underline;
+}
+
+.team-details {
+    margin-top: 20px;
+}
+
+.team-details h1 {
+    font-size: 24px;
+    margin-bottom: 12px;
+    color: #333;
+}
+
+.team-details ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.team-details li {
+    margin-bottom: 6px;
+    color: #444;
+}
+
+.team-list-item-link {
+    text-decoration: none;
+    color: #333;
+}
+
+.team-list-item {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 12px;
+    margin: 12px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    text-align: center;
+}
+
+.team-list-item h2 {
+    margin-bottom: 8px;
+    color: #333333;
+}
+
+.teams-heading {
+    text-align: center;
+    margin-bottom: 20px;
+    color: rgb(149, 149, 200);
+}
