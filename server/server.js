@@ -8,7 +8,7 @@ dotenv.config();
 connectDB();
 const app = express();
 app.use(cors({
-    origin: 'https://user-management-vznb.vercel.app/',
+    origin: 'https://user-management-vznb.vercel.app',
     methods: ['POST', 'GET', 'PUT', 'DELETE'],
     credentials: true,
     allowedHeaders: 'Content-Type,Authorization',
