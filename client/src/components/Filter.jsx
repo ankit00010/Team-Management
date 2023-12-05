@@ -3,12 +3,14 @@ import Form from 'react-bootstrap/Form';
 import "../../public/styles/main.css";
 
 const Filter = ({ onFilterChange }) => {
+    // State to manage filter options
     const [filterOptions, setFilterOptions] = useState({
         domain: '',
         available: '',
         gender: '',
     });
 
+    // Options for the 'Domain' filter
     const domainOptions = [
         'Business Development',
         'Finance',
@@ -19,6 +21,7 @@ const Filter = ({ onFilterChange }) => {
         'UI Designing',
     ];
 
+    // Function to handle option click for radio inputs
     const handleOptionClick = (option, value) => {
         setFilterOptions((prevOptions) => ({
             ...prevOptions,
@@ -26,6 +29,7 @@ const Filter = ({ onFilterChange }) => {
         }));
     };
 
+    // Effect to notify the parent component of filter changes
     useEffect(() => {
         onFilterChange(filterOptions);
     }, [filterOptions, onFilterChange]);
@@ -33,6 +37,7 @@ const Filter = ({ onFilterChange }) => {
     return (
         <div className="filter-container">
             <Form>
+                {/* Domain filter */}
                 <Form.Group className="mb-3">
                     <Form.Label>Domain:</Form.Label>
                     <div className="d-flex">
@@ -53,6 +58,7 @@ const Filter = ({ onFilterChange }) => {
                     </div>
                 </Form.Group>
 
+                {/* Available filter */}
                 <Form.Group className="mb-3">
                     <Form.Label>Available:</Form.Label>
                     <div className="form-check-inline">
@@ -79,6 +85,7 @@ const Filter = ({ onFilterChange }) => {
                     </div>
                 </Form.Group>
 
+                {/* Gender filter */}
                 <Form.Group className="mb-3">
                     <Form.Label>Gender:</Form.Label>
                     <div className="form-check-inline">
