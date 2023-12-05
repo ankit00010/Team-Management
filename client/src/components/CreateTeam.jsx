@@ -67,16 +67,6 @@ const CreateTeam = ({ selectedUserIds }) => {
         }
     };
 
-    // Function to close the user popup
-    const handleClosePopup = () => {
-        setShowPopup(false);
-    };
-
-    // Placeholder function to handle removed users from the wishlist
-    const handleRemoveFromWishlist = (removedUser) => {
-        // Log the removed user information
-        console.log('Removed User:', removedUser);
-    };
 
     return (
         <div>
@@ -92,15 +82,7 @@ const CreateTeam = ({ selectedUserIds }) => {
                 {loading ? 'Creating Team...' : 'Create'}
             </button>
 
-            <button onClick={() => setShowPopup(true)}>See Users Added</button>
 
-            {showPopup && (
-                <CreatedTeamPop
-                    userIDs={selectedUserIds}
-                    onRemoveFromWishlist={handleRemoveFromWishlist}
-                    onClose={handleClosePopup}
-                />
-            )}
         </div>
     );
 };
