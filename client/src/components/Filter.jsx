@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Form from 'react-bootstrap/Form';
+import "../../public/styles/main.css";
 import debounce from 'lodash/debounce';
 
-const Filter = ({ onFilterChange, onClearFilter }) => {
+const Filter = ({ onFilterChange }) => {
     const [filterOptions, setFilterOptions] = useState({
         domain: '',
         available: '',
@@ -49,15 +50,6 @@ const Filter = ({ onFilterChange, onClearFilter }) => {
         };
     }, [filterOptions, onFilterChange]);
 
-    const handleClearFilter = () => {
-        setFilterOptions({
-            domain: '',
-            available: '',
-            gender: '',
-        });
-        onClearFilter();
-    };
-
     return (
         <div className="filter-container">
             <Form>
@@ -103,9 +95,7 @@ const Filter = ({ onFilterChange, onClearFilter }) => {
                             checked={filterOptions.available === 'false'}
                             onChange={() => handleOptionClick('available', 'false')}
                         />
-                        <label className="form-check-label" htmlFor="available-false">
-                            False
-                        </label>
+                        <label className="form-check-label" htmlFor="available-false">False</label>
                     </div>
                 </Form.Group>
 
@@ -119,9 +109,7 @@ const Filter = ({ onFilterChange, onClearFilter }) => {
                             checked={filterOptions.gender === 'Male'}
                             onChange={() => handleOptionClick('gender', 'Male')}
                         />
-                        <label className="form-check-label" htmlFor="gender-male">
-                            Male
-                        </label>
+                        <label className="form-check-label" htmlFor="gender-male">Male</label>
                     </div>
                     <div className="form-check-inline">
                         <input
@@ -131,15 +119,9 @@ const Filter = ({ onFilterChange, onClearFilter }) => {
                             checked={filterOptions.gender === 'Female'}
                             onChange={() => handleOptionClick('gender', 'Female')}
                         />
-                        <label className="form-check-label" htmlFor="gender-female">
-                            Female
-                        </label>
+                        <label className="form-check-label" htmlFor="gender-female">Female</label>
                     </div>
                 </Form.Group>
-
-                <Button variant="secondary" onClick={handleClearFilter}>
-                    Clear Filter
-                </Button>
             </Form>
         </div>
     );
