@@ -42,7 +42,7 @@ const createUser = asyncHandler(async (req, res) => {
         throw new Error("Please provide all required fields.");
     }
 
-    // Create a new user instance
+ 
     const user = new User({
         id,
         first_name,
@@ -54,10 +54,10 @@ const createUser = asyncHandler(async (req, res) => {
         available
     });
 
-    // Save the user to the database
+    
     await user.save();
 
-    // Respond with the created user
+  
     res.status(201).json(user);
 })
 
@@ -74,7 +74,7 @@ const getUser = asyncHandler(async (req, res) => {
 
 const updateUser = asyncHandler(async (req, res) => {
     try {
-        const userIds = req.body._id; // Assuming _id is an array of user IDs
+        const userIds = req.body._id;
         const updatedData = { available: false };
 
         // Updating users based on the array of user IDs
@@ -89,10 +89,10 @@ const updateUser = asyncHandler(async (req, res) => {
             })
         );
 
-        // Sending the updated user information in the response
+    
         res.status(200).json(updatedUsers);
     } catch (error) {
-        // Handle any errors that occurred during the update process
+    
         res.status(500).json({ error: error.message });
     }
 });
@@ -115,7 +115,7 @@ const deleteUser = asyncHandler(async (req, res) => {
 
 
 
-//filter the user
+
 
 const filterUser = asyncHandler(async (req, res) => {
     const { domain, gender, available, page } = req.query;
