@@ -32,6 +32,7 @@ const TeamListItem = ({ teamId, setTeams, teams }) => {
 
                 // Update the state to remove the deleted team
                 setTeams((prevTeams) => prevTeams.filter((team) => team.id !== teamId));
+                window.location.reload();
             } else {
                 console.error('Failed to delete team');
             }
