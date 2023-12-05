@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { Navbar, Container, Form, Button, Nav } from 'react-bootstrap';
-import "../../public/styles/main.css";
-
-
+import '../../public/styles/main.css';
 
 const Search = ({ onSearch }) => {
     const [searchTerm, setSearchTerm] = useState('');
@@ -18,14 +16,23 @@ const Search = ({ onSearch }) => {
             onSearch(userData.data);
         } catch (error) {
             console.error('Error searching users:', error);
-            setSearchTerm([]);
             onSearch([]);
         }
     };
 
+    const handleClear = () => {
+        setSearchTerm('');
+        onSearch([]); // Clear search results
+    };
+
     const handleChange = (e) => {
         setSearchTerm(e.target.value);
-        console.log(searchTerm);
+    };
+
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            handleSearch(e);
+        }
     };
 
     return (
@@ -41,12 +48,18 @@ const Search = ({ onSearch }) => {
                             className="me-2"
                             aria-label="Search"
                             onChange={handleChange}
+                            onKeyDown={handleKeyDown} // Handle "Enter" key press
+                            value={searchTerm}
                         />
-                        <Button variant="outline-light" onClick={(e) => handleSearch(e)}>Search</Button>
+                        <Button variant="outline-light" onClick={handleSearch}>
+                            Search
+                        </Button>
+                        <Button variant="outline-danger" onClick={handleClear}>
+                            Clear
+                        </Button>
                     </Form>
                     <Nav className="ms-auto">
                         <Nav.Link href="/team-details">TeamDetails</Nav.Link>
-
                     </Nav>
                 </Navbar.Collapse>
             </Container>
