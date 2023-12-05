@@ -17,11 +17,11 @@ const TeamListItem = ({ teamId }) => {
 
         fetchTeamName();
     }, [teamId]);
-
     const handleDelete = async () => {
         try {
             const response = await fetch(`https://user-management-seven-murex.vercel.app/api/team/${teamId}`, {
                 method: 'DELETE',
+                credentials: 'include',
             });
 
             if (response.ok) {
@@ -33,6 +33,7 @@ const TeamListItem = ({ teamId }) => {
             console.error('Error deleting team:', error);
         }
     };
+
 
     if (!team) {
         return <p>Loading...</p>;
