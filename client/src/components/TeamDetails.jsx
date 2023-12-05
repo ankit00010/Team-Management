@@ -1,8 +1,9 @@
-// TeamDetails.jsx
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Card, ListGroup } from 'react-bootstrap';
-import '../App.css';
+import "../../public/styles/main";
+
+
 
 const TeamDetails = () => {
     const { name } = useParams();

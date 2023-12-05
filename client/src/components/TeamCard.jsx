@@ -1,7 +1,7 @@
-// TeamCard.jsx
 import React from 'react';
 import { Link } from 'react-router-dom';
-import '../App.css';
+import "../../public/styles/main";
+
 
 const TeamCard = ({ team }) => {
     const { name, users } = team;

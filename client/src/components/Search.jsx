@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Navbar, Container, Form, Button, Nav } from 'react-bootstrap';
-import "../../public/styles/main"
+import "../../public/styles/main";
+
 
 const Search = ({ onSearch }) => {
     const [searchTerm, setSearchTerm] = useState('');
