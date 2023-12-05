@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import CreatedTeamPop from './CreatedTeamPop';
 import { useNavigate } from 'react-router-dom';
 
-const CreateTeam = ({ selectedUserIds }) => {
+const CreateTeam = ({ selectedUserIds, setSelectedUserIds }) => {
     const [teamName, setTeamName] = useState('');
     const [showPopup, setShowPopup] = useState(false);
     const [loading, setLoading] = useState(false);
@@ -40,9 +40,11 @@ const CreateTeam = ({ selectedUserIds }) => {
             if (response.ok) {
                 setTeamName('');
                 alert('Team created successfully!');
+                navigate('/team-details');
+
             } else {
                 console.error('Failed to create team:', response.statusText);
-                alert('Failed to create team. Please try again.');
+                alert('Failed to create team. Please check user is available.');
             }
 
             const response2 = await fetch('http://localhost:5000/api/users', {
@@ -61,7 +63,6 @@ const CreateTeam = ({ selectedUserIds }) => {
                 alert('Failed to update users. Please try again.');
             }
 
-            navigate('/team-details');
         } catch (error) {
             console.error('Error creating team or updating users:', error);
         } finally {
@@ -74,9 +75,11 @@ const CreateTeam = ({ selectedUserIds }) => {
         setShowPopup(false);
     };
 
-    const handleRemoveFromWishlist = (removedUser) => {
+    const handleRemoveFromWishlist = (removedUserId) => {
+        const updatedUserIds = selectedUserIds.filter(id => id !== removedUserId);
+        setSelectedUserIds(updatedUserIds);
         // Log the removed user information
-        console.log('Removed User:', removedUser);
+        console.log('Removed User ID:', removedUserId);
     };
 
     return (

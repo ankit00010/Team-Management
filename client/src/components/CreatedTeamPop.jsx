@@ -8,7 +8,7 @@ const CreatedTeamPop = ({ userIDs, onRemoveFromWishlist, onClose }) => {
         setUsers(prevUsers =>
             prevUsers.map(user => (user.id === removedUser._id ? { ...user, removed: true } : user))
         );
-        onRemoveFromWishlist(removedUser);
+        onRemoveFromWishlist(removedUser._id);
     };
 
     return (
