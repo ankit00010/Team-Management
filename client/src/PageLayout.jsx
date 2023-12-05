@@ -29,8 +29,8 @@ const PageLayout = () => {
     };
 
     useEffect(() => {
-        // You can add any additional logic here if needed
-    }, [filteredUsers]); // Trigger effect when filteredUsers change
+        
+    }, [filteredUsers]); 
 
     return (
         <div>
