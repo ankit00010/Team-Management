@@ -1,6 +1,6 @@
 const asyncHandler = require("express-async-handler");
 const Team = require("../model/teamModels");
-const User = require("../model/userModel"); // Assuming User is the model for users
+const User = require("../model/userModel"); 
 
 const createTeam = asyncHandler(async (req, res) => {
     const { name, userIds } = req.body;
