@@ -6,7 +6,6 @@ import UserList from './components/UserList';
 import CreateTeam from './components/CreateTeam';
 
 const PageLayout = () => {
-    const [renderCount, setRenderCount] = useState(0);
     const [searchResults, setSearchResults] = useState([]);
     const [filteredUsers, setFilteredUsers] = useState([]);
     const [selectedUserIds, setSelectedUserIds] = useState([]);
