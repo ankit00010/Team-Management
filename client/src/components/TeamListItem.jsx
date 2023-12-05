@@ -21,6 +21,7 @@ const TeamListItem = ({ teamId, setTeams, teams }) => {
 
     const handleDelete = async () => {
         try {
+            console.log("This is teamID :" + teamId);
             const response = await fetch(`https://user-management-seven-murex.vercel.app/api/team/${teamId}`, {
                 method: 'DELETE',
                 credentials: 'include',
@@ -29,8 +30,7 @@ const TeamListItem = ({ teamId, setTeams, teams }) => {
             if (response.ok) {
                 alert('Team deleted successfully!');
 
-                // Update the state to remove the deleted team
-                setTeams((prevTeams) => prevTeams.filter((team) => team.id !== teamId));
+                window.location.reload();
             } else {
                 console.error('Failed to delete team');
             }
