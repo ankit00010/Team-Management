@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import "../../public/styles/main";
+import "../../public/styles/main.css";
+
 
 
 const TeamCard = ({ team }) => {

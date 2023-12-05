@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Card, ListGroup } from 'react-bootstrap';
-import "../../public/styles/main";
+import "../../public/styles/main.css";
+
 
 
 const TeamDetails = () => {

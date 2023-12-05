@@ -1,6 +1,6 @@
-// components/TeamCreationSuccess.js
 import React from 'react';
-import PageLayout from '../PageLayout';
+import "../../public/styles/main.css";
+
 
 const TeamCreationSuccess = ({ onGoBackToCreate }) => {
     return (

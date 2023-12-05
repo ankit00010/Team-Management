@@ -28,10 +28,8 @@ const PageLayout = () => {
     };
 
     const handleToggleSelect = (userId) => {
-        // Check if the user is already selected
         const isSelected = selectedUserIds.includes(userId);
 
-        // Update the selectedUserIds array
         if (isSelected) {
             setSelectedUserIds((prevSelected) => prevSelected.filter((id) => id !== userId));
         } else {
@@ -43,7 +41,7 @@ const PageLayout = () => {
 
     useEffect(() => {
         handleFilterChange({});
-    }, []); // Fetch all users initially
+    }, []);
 
     return (
         <div>
