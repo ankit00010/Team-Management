@@ -8,7 +8,7 @@ dotenv.config();
 connectDB();
 const app = express();
 app.use(cors({
-    origin: ["user-management-app-ten.vercel.app/"],
+    origin: ["https://user-management-app-ten.vercel.app/"],
     methods: ["POST", "GET", "PUT", "DELETE"],
     credentials: true
 }));
