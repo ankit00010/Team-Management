@@ -31,9 +31,11 @@ const Search = ({ onSearch }) => {
 
     const handleKeyDown = (e) => {
         if (e.key === 'Enter') {
+            e.preventDefault();
             handleSearch(e);
         }
     };
+
 
     return (
         <Navbar expand="lg" bg="primary" variant="dark">
