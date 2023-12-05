@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import CreatedTeamPop from './CreatedTeamPop';
 import { useNavigate } from 'react-router-dom';
 
 const CreateTeam = ({ selectedUserIds }) => {
