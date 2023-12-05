@@ -4,7 +4,6 @@ import { Card, ListGroup } from 'react-bootstrap';
 import "../../public/styles/main";
 
 
-
 const TeamDetails = () => {
     const { name } = useParams();
     const [team, setTeam] = useState(null);
