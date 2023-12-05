@@ -31,6 +31,8 @@ const CreateTeam = ({ selectedUserIds }) => {
             if (response.ok) {
                 setTeamName('');
                 alert('Team created successfully!');
+                navigate('/team-details');
+
             } else {
                 const errorText = await response.text();
                 console.error('Failed to create team:', errorText);
@@ -40,7 +42,6 @@ const CreateTeam = ({ selectedUserIds }) => {
             // Additional code related to user update is removed
 
             // Navigate to the team-details page
-            navigate('/team-details');
         } catch (error) {
             console.error('Error creating team or updating users:', error);
         } finally {
