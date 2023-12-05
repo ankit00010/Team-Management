@@ -2,11 +2,13 @@
 
 ## Technologies Used
 
-- [MongoDB](https://www.mongodb.com/) (v4.0 or later): Database to store user and team information.
-- [Express.js](https://expressjs.com/) (v4.17.1): Backend framework.
-- [React.js](https://reactjs.org/) (v17.0.2): Frontend library.
-- [Node.js](https://nodejs.org/) (v14.0.0 or later): JavaScript runtime for the server.
-- [Mongoose](https://mongoosejs.com/) (v5.13.3): ODM for MongoDB and Node.js.
+
+![MongoDB Version](https://img.shields.io/badge/MongoDB-v4.0%20or%20later-green)
+![Express.js Version](https://img.shields.io/badge/Express.js-%5E4.17.1-blue)
+![React.js Version](https://img.shields.io/badge/React.js-v17.0.2-blue)
+![Node.js Version](https://img.shields.io/badge/Node.js-v14.0.0%20or%20later-green)
+![Mongoose Version](https://img.shields.io/badge/Mongoose-v5.13.3-blue)
+
 
 
 ## Overview
