@@ -11,7 +11,8 @@ app.use(cors({
     origin: 'https://user-management-vznb.vercel.app',
     methods: ['POST', 'GET', 'PUT', 'DELETE'],
     credentials: true,
-    allowedHeaders: 'Content-Type,Authorization',
+    allowedHeaders: ['Content-Type', 'Authorization'],
+
 }));
 
 const port = process.env.PORT || 5001;
