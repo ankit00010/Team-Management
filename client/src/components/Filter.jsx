@@ -21,10 +21,13 @@ const Filter = ({ onFilterChange }) => {
     ];
 
     const handleOptionClick = (option, value) => {
-        setFilterOptions((prevOptions) => ({
-            ...prevOptions,
-            [option]: prevOptions[option] === value ? '' : value,
-        }));
+        setFilterOptions((prevOptions) => {
+            const newValue = prevOptions[option] === value ? '' : value;
+            return {
+                ...prevOptions,
+                [option]: newValue,
+            };
+        });
     };
 
     const fetchFilteredData = async () => {
