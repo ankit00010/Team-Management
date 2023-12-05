@@ -54,7 +54,8 @@ const TeamListItem = ({ teamId }) => {
                     padding: '5px 10px',
                     cursor: 'pointer',
                     borderRadius: '5px',
-                    marginLeft: '50px', // Align to the right
+                    display: flex,
+                    justifyContent: 'flex-end',
                 }}
             >
                 Delete
