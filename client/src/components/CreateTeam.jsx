@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 const CreateTeam = ({ selectedUserIds }) => {
     // State to manage team name, popup visibility, loading state, and navigation
     const [teamName, setTeamName] = useState('');
-    const [showPopup, setShowPopup] = useState(false);
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
@@ -38,34 +37,17 @@ const CreateTeam = ({ selectedUserIds }) => {
                 alert('Failed to create team. Please try again.');
             }
 
-            const response2 = await fetch('https://user-management-seven-murex.vercel.app/api/users', {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    _id: selectedUserIds,
-                    available: false,
-                }),
-            });
-
-            // Check the response status for user update
-            if (!response2.ok) {
-                console.error('Failed to update users:', response2.statusText);
-                alert('Failed to update users. Please try again.');
-            }
+            // Additional code related to user update is removed
 
             // Navigate to the team-details page
             navigate('/team-details');
         } catch (error) {
             console.error('Error creating team or updating users:', error);
         } finally {
-            // Reset loading state and show the user popup
+            // Reset loading state
             setLoading(false);
-            setShowPopup(true);
         }
     };
-
 
     return (
         <div>
@@ -80,8 +62,6 @@ const CreateTeam = ({ selectedUserIds }) => {
             <button onClick={handleCreateTeam} disabled={loading}>
                 {loading ? 'Creating Team...' : 'Create'}
             </button>
-
-
         </div>
     );
 };
