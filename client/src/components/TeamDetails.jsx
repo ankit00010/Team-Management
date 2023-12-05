@@ -1,21 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Card, ListGroup } from 'react-bootstrap';
-import "../../public/styles/main.css"
-
-
+import "../../public/styles/main.css";
 
 const TeamDetails = () => {
+    // Extract team name from the route parameters
     const { name } = useParams();
+    // State to manage the team details
     const [team, setTeam] = useState(null);
 
+    // Effect to fetch team details when the component mounts or the team name changes
     useEffect(() => {
         const fetchTeamDetails = async () => {
             try {
+                // Fetch team details based on the team name
                 const response = await fetch(`https://user-management-api-eight.vercel.app/api/team/${name}`);
                 const data = await response.json();
+                // Set the team details in the state
                 setTeam(data.team);
             } catch (error) {
+                // Handle errors when fetching team details
                 console.error('Error fetching team details:', error);
             }
         };
@@ -23,10 +27,12 @@ const TeamDetails = () => {
         fetchTeamDetails();
     }, [name]);
 
+    // Display loading message until team details are available
     if (!team) {
         return <p>Loading...</p>;
     }
 
+    // Render the team details using Card and ListGroup components
     return (
         <div className="team-details">
             <h1 className="teams-heading">Team Details</h1>
