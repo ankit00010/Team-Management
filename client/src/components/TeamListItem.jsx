@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import '../../public/styles/main.css'
-const TeamListItem = ({ teamId }) => {
+import '../../public/styles/main.css';
+
+const TeamListItem = ({ teamId, setTeams, teams }) => {
     const [team, setTeam] = useState(null);
 
     useEffect(() => {
@@ -17,6 +18,7 @@ const TeamListItem = ({ teamId }) => {
 
         fetchTeamName();
     }, [teamId]);
+
     const handleDelete = async () => {
         try {
             console.log("This is teamID :" + teamId);
@@ -27,6 +29,9 @@ const TeamListItem = ({ teamId }) => {
 
             if (response.ok) {
                 alert('Team deleted successfully!');
+
+                // Update the state to remove the deleted team
+                setTeams((prevTeams) => prevTeams.filter((team) => team.id !== teamId));
             } else {
                 console.error('Failed to delete team');
             }
@@ -34,7 +39,6 @@ const TeamListItem = ({ teamId }) => {
             console.error('Error deleting team:', error);
         }
     };
-
 
     if (!team) {
         return <p>Loading...</p>;
