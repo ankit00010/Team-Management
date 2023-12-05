@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Navbar, Container, Form, Button, Nav } from 'react-bootstrap';
-import debounce from 'lodash/debounce';  // Fix the typo here
+import debounce from 'lodash/debounce';
 
 import '../../public/styles/main.css';
 
@@ -19,7 +19,7 @@ const Search = ({ onSearch }) => {
 
 
 
-    }, 300); // Adjust the debounce delay as needed
+    }, 300);
 
     const handleChange = (e) => {
         const { value } = e.target;
