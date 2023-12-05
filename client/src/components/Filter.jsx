@@ -1,8 +1,6 @@
-// Filter.js
 import React, { useState, useEffect } from 'react';
 import Form from 'react-bootstrap/Form';
-import '../App.css';
-
+import "../../public/styles/main"
 const Filter = ({ onFilterChange }) => {
     const [filterOptions, setFilterOptions] = useState({
         domain: '',

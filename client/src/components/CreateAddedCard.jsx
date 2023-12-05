@@ -37,9 +37,8 @@ const CreateAddedCard = ({ userId, onRemoveFromWishlist }) => {
 
     const handleRemoveFromWishlist = () => {
         onRemoveFromWishlist(user);
-        setShouldDisplay(false); // Set shouldDisplay to false when removing from wishlist
+        setShouldDisplay(false);
 
-        // Log the updated user array after removing a user
         console.log('Updated User Array:', user._id);
     };
 
