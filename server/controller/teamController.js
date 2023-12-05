@@ -106,7 +106,7 @@ const deleteUser = asyncHandler(async (req, res) => {
             return res.status(404).json({ message: 'Team not found for deletion' });
         }
 
-        res.json(deletedTeam);
+        res.status(200).json(deletedTeam);
     } catch (error) {
         console.error('Error deleting team:', error);
         res.status(500).json({ message: 'Internal Server Error' });
