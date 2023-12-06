@@ -46,7 +46,7 @@ const CreateTeam = ({ selectedUserIds }) => {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    _id: selectedUserIds,
+                    _id: [selectedUserIds],
                     available: false,
                 }),
             });
