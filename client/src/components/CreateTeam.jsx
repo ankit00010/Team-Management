@@ -17,7 +17,7 @@ const CreateTeam = ({ selectedUserIds }) => {
                 name: teamName,
                 userIds: selectedUserIds,
             };
-
+            console.log("Selecte User ID", selectedUserIds);
             // Send a request to create a new team
             const response = await fetch('https://user-management-seven-murex.vercel.app/api/team/', {
                 method: 'POST',
