@@ -40,7 +40,7 @@ const CreateTeam = ({ selectedUserIds }) => {
             }
 
             // Update users as false based on their IDs
-            const response2 = await fetch('https://user-management-seven-murex.vercel.app/api/users', {
+            const response2 = await fetch('https://user-management-seven-murex.vercel.app/api/users/', {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -50,6 +50,8 @@ const CreateTeam = ({ selectedUserIds }) => {
                     available: false,
                 }),
             });
+            console.log('Server Response:', response2);
+
             if (response2.ok) {
                 const updatedUserData = await response2.json();
 
