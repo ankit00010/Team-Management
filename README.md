@@ -17,7 +17,7 @@ This Team Management System is a web application built using the MERN (MongoDB, 
 
 ## Getting Started
 
-### Prerequisites
+
 
 ## Usage
 
