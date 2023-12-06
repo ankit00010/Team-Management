@@ -11,42 +11,18 @@ const CreateTeam = ({ selectedUserIds }) => {
     const handleCreateTeam = async () => {
         try {
             setLoading(true);
-            // Update users as false based on their IDs
-            const updateData = {
-                _id: selectedUserIds,
-                available: false
-            };
-            console.log(updateData);
-            const response1 = await fetch('https://user-management-seven-murex.vercel.app/api/users/', {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(
-                    updateData
-                ),
-            });
-            console.log('Server Response:', response1);
 
-            if (response1.ok) {
-                const updatedUserData = await response1.json();
-
-                // Log the updated user data for debugging
-                console.log('Updated User Data:', updatedUserData);
-
-
-            } else {
-                console.log('Failed to update users:', response1.statusText);
-
-            }
             // Prepare team data for the API request
             const teamData = {
+                _id: selectedUserIds,
+                available: false,
+            };
+            const updateUserData = {
                 name: teamName,
                 userIds: selectedUserIds,
             };
-            console.log("Selecte User ID", selectedUserIds);
             // Send a request to create a new team
-            const response2 = await fetch('https://user-management-seven-murex.vercel.app/api/team/', {
+            const response = await fetch('https://user-management-seven-murex.vercel.app/api/team/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -55,18 +31,40 @@ const CreateTeam = ({ selectedUserIds }) => {
             });
 
             // Check the response status and show appropriate messages
-            if (response2.ok) {
+            if (response.ok) {
                 setTeamName('');
                 alert('Team created successfully!');
                 navigate('/team-details');
 
             } else {
-                const errorText = await response2.text();
+                const errorText = await response.text();
                 console.error('Failed to create team:', errorText);
                 alert('Failed to create team. Please try again.');
             }
 
+            // Update users as false based on their IDs
+            const response2 = await fetch('https://user-management-seven-murex.vercel.app/api/users/', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(
+                    updateUserData
+                ),
+            });
+            console.log('Server Response:', response2);
 
+            if (response2.ok) {
+                const updatedUserData = await response2.json();
+
+                // Log the updated user data for debugging
+                console.log('Updated User Data:', updatedUserData);
+
+
+            } else {
+                console.log('Failed to update users:', response2.statusText);
+
+            }
 
         } catch (error) {
             console.error('Error creating team or updating users:', error);
