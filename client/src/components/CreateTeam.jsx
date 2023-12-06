@@ -12,33 +12,6 @@ const CreateTeam = ({ selectedUserIds }) => {
         try {
             setLoading(true);
 
-            // Prepare team data for the API request
-            const teamData = {
-                name: teamName,
-                userIds: selectedUserIds,
-            };
-            console.log("Selecte User ID", selectedUserIds);
-            // Send a request to create a new team
-            const response = await fetch('https://user-management-seven-murex.vercel.app/api/team/', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(teamData),
-            });
-
-            // Check the response status and show appropriate messages
-            if (response.ok) {
-                setTeamName('');
-                alert('Team created successfully!');
-                navigate('/team-details');
-
-            } else {
-                const errorText = await response.text();
-                console.error('Failed to create team:', errorText);
-                alert('Failed to create team. Please try again.');
-            }
-
             // Update users as false based on their IDs
             const response2 = await fetch('https://user-management-seven-murex.vercel.app/api/users/', {
                 method: 'PUT',
@@ -46,24 +19,47 @@ const CreateTeam = ({ selectedUserIds }) => {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    _id: [selectedUserIds],
+                    _id: selectedUserIds,
                     available: false,
                 }),
             });
-            console.log('Server Response:', response2);
+
+            console.log('Server Response for User Update:', response2);
 
             if (response2.ok) {
                 const updatedUserData = await response2.json();
 
-                // Log the updated user data for debugging
+                // Logging the updated user data for debugging
                 console.log('Updated User Data:', updatedUserData);
 
+                // Use teamData for the fetch request with only userIds
+                const response = await fetch('https://user-management-seven-murex.vercel.app/api/team/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        userIds: selectedUserIds,
+                    }),
+                });
 
+                // Checking  the response status and the messages for ui
+                if (response.ok) {
+                    setTeamName('');
+                    alert('Team created successfully!');
+                    navigate('/team-details');
+                } else {
+                    const errorText = await response.text();
+                    console.error('Failed to create team:', errorText);
+                    alert('Failed to create team. Please try again.');
+                }
             } else {
                 console.log('Failed to update users:', response2.statusText);
 
+                // Logging  the response body in case of an error
+                const errorResponseBody = await response2.text();
+                console.log('Error Response Body:', errorResponseBody);
             }
-
         } catch (error) {
             console.error('Error creating team or updating users:', error);
         } finally {
