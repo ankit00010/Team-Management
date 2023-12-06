@@ -64,7 +64,7 @@ const updateUser = asyncHandler(async (req, res) => {
     try {
         // Extract user IDs and updated data from the request body
         const userIds = req.body._id;
-        const updatedData = req.body;
+        const updatedData = { available: false };
 
         // Update users based on the array of user IDs
         const updatedUsers = await Promise.all(
@@ -78,14 +78,13 @@ const updateUser = asyncHandler(async (req, res) => {
             })
         );
 
-        // Returned the updated users
+        // Return the updated users
         res.status(200).json(updatedUsers);
     } catch (error) {
-        // Handled errors
+        // Handle errors
         res.status(500).json({ error: error.message });
     }
 });
-
 
 // Controller function to delete a user
 const deleteUser = asyncHandler(async (req, res) => {
