@@ -8,7 +8,7 @@ const getAllUser = asyncHandler(async (req, res) => {
     const page = parseInt(req.query.p) || 1;
     const userPerPage = 20;
     const skip = (page - 1) * userPerPage;
-    
+
     // Retrieve users with pagination
     const users = await User.find().skip(skip).limit(userPerPage);
 
@@ -45,7 +45,7 @@ const createUser = asyncHandler(async (req, res) => {
 const getUser = asyncHandler(async (req, res) => {
     // Extract user ID from the request parameters
     const userId = req.params.id;
-    
+
     // Find the user by ID
     const user = await User.findById(userId);
 
@@ -64,7 +64,7 @@ const updateUser = asyncHandler(async (req, res) => {
     try {
         // Extract user IDs and updated data from the request body
         const userIds = req.body._id;
-        const updatedData = { available: false };
+        const updatedData = req.body;
 
         // Update users based on the array of user IDs
         const updatedUsers = await Promise.all(
@@ -78,19 +78,20 @@ const updateUser = asyncHandler(async (req, res) => {
             })
         );
 
-        // Return the updated users
+        // Returned the updated users
         res.status(200).json(updatedUsers);
     } catch (error) {
-        // Handle errors
+        // Handled errors
         res.status(500).json({ error: error.message });
     }
 });
+
 
 // Controller function to delete a user
 const deleteUser = asyncHandler(async (req, res) => {
     // Extract user ID from the request parameters
     const userId = req.params.id;
-    
+
     // Find the user by ID
     const user = await User.findById(userId);
 
