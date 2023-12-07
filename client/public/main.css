@@ -1,12 +1,11 @@
 /* App.css */
+
 body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
     background-color: #1e1e1e;
-    /* Dark Blue color */
     color: #fff;
-    /* White color for text */
 }
 
 .app {
@@ -21,33 +20,6 @@ body {
     object-fit: cover;
     border-radius: 50%;
 }
-
-/* Filter.css */
-.filter-container {
-    background-color: #333;
-    color: #fff;
-    padding: 20px;
-    margin-bottom: 20px;
-}
-
-.form-check-inline {
-    margin-right: 20px;
-}
-
-.form-check-label {
-    margin-left: 5px;
-}
-
-.form-check-input:checked {
-    background-color: #000;
-}
-
-.error-messages {
-    color: #ff0000;
-    /* Red color for error messages */
-    margin-bottom: 16px;
-}
-
 
 .team-card {
     border: 1px solid #ddd;
@@ -135,9 +107,6 @@ body {
     color: rgb(149, 149, 200);
 }
 
-
-
-/* delete button */
 .delete-button {
     background-color: #dc3545;
     color: #fff;
@@ -147,6 +116,7 @@ body {
     border-radius: 5px;
 }
 
+/* Filter.css */
 
 .filter-container {
     background-color: #333;
@@ -160,7 +130,26 @@ body {
 
 .form-check-inline {
     margin-bottom: 10px;
-    margin-right: 10px;
+    margin-right: 20px;
+}
+
+/* Adjust the domain options for smaller screens */
+@media (max-width: 767px) {
+    .form-check-inline {
+        margin-right: 0;
+    }
+
+    .domain-options-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .form-check-inline {
+        width: calc(33.33% - 10px);
+        /* 3 options per row with 10px spacing */
+        margin-bottom: 10px;
+    }
 }
 
 .form-check-label {
@@ -169,11 +158,4 @@ body {
 
 .form-check-input:checked {
     background-color: #000;
-}
-
-/* Add styling for smaller screens */
-@media (max-width: 767px) {
-    .form-check-inline {
-        margin-right: 0;
-    }
 }

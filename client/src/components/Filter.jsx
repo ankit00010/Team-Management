@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Form from 'react-bootstrap/Form';
-import "../../public/styles/main.css";
 import debounce from 'lodash/debounce';
+
+// Import your CSS files
+import "../../public/styles/main.css";
 
 const Filter = ({ onFilterChange }) => {
     const [filterOptions, setFilterOptions] = useState({
@@ -58,7 +60,7 @@ const Filter = ({ onFilterChange }) => {
             <Form>
                 <Form.Group className="mb-3">
                     <Form.Label>Domain:</Form.Label>
-                    <div className="d-flex">
+                    <div className="domain-options-container">
                         {domainOptions.map((domain) => (
                             <div key={domain} className="form-check-inline">
                                 <input
