@@ -146,3 +146,27 @@ body {
     cursor: pointer;
     border-radius: 5px;
 }
+
+
+/* Add styling for larger screens */
+@media (min-width: 768px) {
+    .filter-container {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .form-check-inline {
+        margin-right: 10px;
+    }
+}
+
+/* Add styling for smaller screens */
+@media (max-width: 767px) {
+    .filter-container {
+        flex-direction: column;
+    }
+
+    .form-check-inline {
+        margin-bottom: 10px;
+    }
+}
