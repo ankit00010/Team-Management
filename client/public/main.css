@@ -148,8 +148,6 @@ body {
 }
 
 
-/* Filter.css */
-
 .filter-container {
     background-color: #333;
     color: #fff;
@@ -158,7 +156,6 @@ body {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    /* Allow items to wrap to the next line on smaller screens */
 }
 
 .form-check-inline {
